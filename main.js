@@ -3,6 +3,8 @@ const path = require('path')
 
 let ventana;
 
+let usuarios = [];
+
 function createWindow() {
     ventana = new BrowserWindow({
         width: 400,
@@ -28,10 +30,20 @@ function createWindow2() {
 }
 
 ipcMain.on('registroValido', function(event, args) {
-    createWindow2();
-    ventana2.webContents.on('did-finish-load', function() {
-        ventana2.webContents.send('inicioCorrecto', 'Bienvenido ' + args)
-    })
-})
+    let test;
+    if (usuarios.includes(args)) {
+        test = false;
+        ventana.webContents.send('usuarioRepetido', test)
+    } else {
+        ventana.webContents.send('usuarioRepetido', test)
+        usuarios.push(args);
+        ventana.loadFile('index.html');
+        createWindow2();
+        ventana2.webContents.on('did-finish-load', function() {
+            ventana2.webContents.send('inicioCorrecto', 'Bienvenido ' + args)
+        });
+        console.log(usuarios);
+    }
+});
 
 app.whenReady().then(createWindow)

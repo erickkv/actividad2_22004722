@@ -44,10 +44,16 @@ formulario.addEventListener('submit', function(evento) {
         let fechaIngresada = new Date(fechaNac.value)
         let fechaActual = new Date();
         if (fechaIngresada > fechaActual){
-            adv4.innerHTML = 'La fecha no puede ser mayor a la fecha actual'
+            adv4.innerHTML = 'La fecha no puede ser mayor a la fecha actual';
         }
     }
     if (error === 0) {
         window.comunicacion.registroValido(nombre.value);
+        window.comunicacion.usuarioRepetido(function(event, test) {
+            if (test === false) {
+                adv1.innerHTML = 'el nombre ya está en uso, por favor modifiquelo o elija otro';
+            }
+        });
+
     }
 })
