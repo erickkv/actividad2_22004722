@@ -45,6 +45,7 @@ formulario.addEventListener('submit', function(evento) {
         let fechaActual = new Date();
         if (fechaIngresada > fechaActual){
             adv4.innerHTML = 'La fecha no puede ser mayor a la fecha actual';
+            error = 1;
         }
     }
     if (error === 0) {
