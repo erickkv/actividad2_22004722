@@ -1,0 +1,19 @@
+#form-login{
+    display: grid;
+    column-count: 1;
+    margin: 5px;
+    padding: 5px;
+    border-width: 2px;
+    border-style: solid;
+}
+
+input {
+    margin-bottom: 5px;
+}
+
+.advertencia {
+    margin-bottom: 5px;
+    text-align: center;
+    background-color: red;
+    color: white;
+}
